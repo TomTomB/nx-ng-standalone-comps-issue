@@ -1,0 +1,38 @@
+{
+  "projectType": "library",
+  "sourceRoot": "libs/some-lib/src",
+  "prefix": "test-org",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/some-lib"],
+      "options": {
+        "project": "libs/some-lib/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/some-lib/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/some-lib/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/some-lib"],
+      "options": {
+        "jestConfig": "libs/some-lib/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/some-lib/**/*.ts", "libs/some-lib/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}
